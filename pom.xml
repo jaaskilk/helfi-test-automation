@@ -1,0 +1,78 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>hel-fi</groupId>
+  <artifactId>hel-fi</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>Hel.Fi Test Automation</name>
+  <description>New Hel.fi site test automation</description>
+  <properties>
+  	      <robot.log.file></robot.log.file>
+      	  <robot.tag></robot.tag>
+  		  <robot.exclude.tag></robot.exclude.tag>
+	      <robot.browser>chrome</robot.browser>
+	      <robot.browser_version>65</robot.browser_version>
+	      <robot.browser_os>Windows</robot.browser_os>
+	      <robot.browser_os_version>10</robot.browser_os_version>
+	      <robot.remote_url>False</robot.remote_url>
+	      <robot.main.url>about:blank</robot.main.url>
+  </properties>
+  <dependencies>
+        <dependency>
+            <groupId>com.github.hi-fi</groupId>
+            <artifactId>robotframework-seleniumlibrary</artifactId>
+            <version>3.141.59.26</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.marketsquare</groupId>
+            <artifactId>robotframework-httprequestlibrary</artifactId>
+            <version>0.0.17</version>
+        </dependency>
+  </dependencies>      
+<profiles>
+      <profile>
+            <id>localhost</id>
+            <properties>
+               <robot.docker.adminurl.command>docker exec helfi-app drush uli</robot.docker.adminurl.command>
+               <robot.language>Suomi</robot.language>
+            </properties>
+            
+            <build>
+              <!-- Create JAR-file without version information in the filename -->
+              <finalName>RobotFramework</finalName>
+                <plugins>
+                    <plugin>
+                        <groupId>org.robotframework</groupId>
+                        <artifactId>robotframework-maven-plugin</artifactId>
+                        <version>1.7.2</version>
+                        <executions>
+                            <execution>
+                                <id>selenium</id>
+                                <phase>integration-test</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <user.timezone>Europe/Helsinki</user.timezone>
+                            </systemPropertyVariables>
+                            <testCasesDirectory>${project.basedir}/src/test/resources/robotframework-tests</testCasesDirectory>
+                            <includes_cli>${robot.tag}</includes_cli>
+                            <excludes_cli>${robot.exclude.tag}</excludes_cli>
+                            <log>${robot.log.file}</log>
+                            <xunitFile>${project.build.directory}/robotframework-reports/xunit.xml</xunitFile>
+                            <variables>
+                           	 	<variable>LANGUAGE:${robot.language}</variable>
+                           	 	<variable>ADMIN_URL:${robot.docker.adminurl.command}</variable>
+                           	</variables>
+                        </configuration>
+                    </plugin>
+
+                </plugins>
+            </build>
+
+        </profile>
+</profiles>
+</project>
