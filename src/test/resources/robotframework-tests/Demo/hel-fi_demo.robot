@@ -1,4 +1,5 @@
 *** Settings ***
+Documentation   Just a small demo
 Library           SeleniumLibrary
 Library           OperatingSystem
 Test Setup      Get Admin Url
