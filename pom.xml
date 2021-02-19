@@ -66,6 +66,7 @@
                             <variables>
                            	 	<variable>LANGUAGE:${robot.language}</variable>
                            	 	<variable>ADMIN_URL:${robot.docker.adminurl.command}</variable>
+                           	 	<variable>BROWSER:${robot.browser}</variable>
                            	</variables>
                         </configuration>
                     </plugin>

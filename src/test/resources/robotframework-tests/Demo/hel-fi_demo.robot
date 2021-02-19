@@ -19,7 +19,7 @@ Get Admin Url
    Set Test Variable   ${admin_url}
       
 Go To Content Site
-	Open Browser  ${admin_url}  Chrome
+	Open Browser  ${admin_url}  ${BROWSER}
 	Sleep   5
 	Go To   https://helfi.docker.sh/fi/user/1
 	Sleep   5
@@ -28,6 +28,7 @@ Go To Content Site
 	Wait Until Keyword Succeeds  3x  200ms  Click Element  //li[contains(@class, 'menu-item menu-item__system-admin_content')]
 	
 Open First Item
+	Sleep   5
 	Wait Until Keyword Succeeds  5x  200ms  Click Element  //a[contains(@href, '/fi/hero-ilman-kuvaa-tasattu-keskelle')]
 	Sleep   5
     Capture Page Screenshot
