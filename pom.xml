@@ -3,7 +3,7 @@
   <groupId>hel-fi</groupId>
   <artifactId>hel-fi</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>Hel.Fi Test Automation</name>
+  <name>Hel.Fi Test Automation project</name>
   <description>New Hel.fi site test automation</description>
   <properties>
   	      <robot.log.file></robot.log.file>
